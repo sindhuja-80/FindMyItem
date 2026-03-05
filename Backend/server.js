@@ -1,0 +1,21 @@
+import express from "express"
+import cors from "cors"
+import connectDB from "./config/db.js"
+import userRouter from "./routes/userRoutes.js"
+import itemRouter from "./routes/itemRoutes.js"
+
+const app=express()
+
+app.use(express.json())
+app.use(cors())
+
+connectDB()
+
+app.use("/api/users",userRouter)
+app.use("/api/items",itemRouter)
+
+
+app.get('/',(req,res)=>{
+    res.send("api is working")
+})
+app.listen(3000)
