@@ -1,9 +1,14 @@
-import express from 'express';
-import upload from "../middleware/Upload.js"
-import { addItem,getItems } from '../controllers/itemController';
-const itemRouter=express.Router();
+import express from "express";
+import upload from "../middleware/upload.js";
+import {addItem,getItems,getItemsByCategory,getItemsByTag,getItemById} from "../controllers/itemController.js";
 
-itemRouter.post("/add",upload.single("image"),addItem)
+const itemRouter = express.Router();
 
-itemRouter.get("/",getItems)
-export default itemRouter
+
+itemRouter.post("/add", upload.single("image"), addItem);
+itemRouter.get("/", getItems);
+itemRouter.get("/category/:category", getItemsByCategory);
+itemRouter.get("/tag/:tag", getItemsByTag);
+itemRouter.get("/:id", getItemById);
+
+export default itemRouter;

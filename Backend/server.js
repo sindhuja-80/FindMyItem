@@ -13,9 +13,12 @@ connectDB()
 
 app.use("/api/users",userRouter)
 app.use("/api/items",itemRouter)
+app.use("/uploads", express.static("uploads"))
 
 
 app.get('/',(req,res)=>{
     res.send("api is working")
 })
-app.listen(3000)
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});

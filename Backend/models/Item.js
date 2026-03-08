@@ -5,8 +5,8 @@ const itemSchema=new mongoose.Schema({
     description:{type:String,required:true},
     date:{type:Date},
     location:{type:String},
-    catogry:{type:String},
-    tags:{type:String},
+    category:{type:String},
+    tags:[{type:String}],
     image:{type:String},
     type:{type:String,enum:["lost","found"]}
 },{timestamps:true})

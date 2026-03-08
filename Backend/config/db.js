@@ -1,12 +1,19 @@
 import mongoose from "mongoose";
+import dns from "dns";
 
-const connectDB =async()=>{
-    try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/findmyitem")
-        console.log("Mongodb Connected")
-    }catch(error){
-        console.log("Database connection failed",error)
-        process.exit(1)
-    }
-}
-export default connectDB
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://kalagotlasindhuja06_db_user:woKY53Oy973fC4rI@cluster0.zty8v9v.mongodb.net/findmyitem"
+    );
+
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.log("Database connection failed", error);
+    process.exit(1);
+  }
+};
+
+export default connectDB;
