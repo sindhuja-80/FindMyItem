@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { FaEyeSlash,FaEye } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   const [name,setName]=useState("")
@@ -11,6 +12,7 @@ const Signup = () => {
   const [showPassword,setShowPassword]=useState(false)
   const [showConfirmPassword,setShowConfirmPassword]=useState(false)
   const [error,setError]=useState("")
+  const navigate=useNavigate()
 
   const handleSignup =async (e)=>{
     e.preventDefault()
@@ -40,10 +42,10 @@ const Signup = () => {
   }
 
     try{
-      const res=await axios.post("https://localhost:3000/api/users/register",{name,email,phone,password})
+      const res=await axios.post("https://localhost:5000/api/users/register",{name,email,phone,password})
       if(res.data.success){
         alert("Account created Successfully")
-        console.log(res.data)
+        navigate("/login")
       }
     }catch(error){
       console.log(error)
@@ -56,9 +58,7 @@ const Signup = () => {
 
       <div className="bg-white sm:p-10 p-6 rounded-2xl shadow-lg w-[90%] max-w-md transition-all">
 
-        <h2 className='text-2xl font-bold text-center mb-1'>
-            Welcome to <br/> FindMyItem
-        </h2>
+        <h2 className='text-2xl font-bold text-center mb-1 text-pink-800'> FindMyItem</h2>
 
         <p className='text-md text-center mb-8'>Create an Account</p>
 
@@ -154,7 +154,7 @@ const Signup = () => {
 
         <p className='text-center text-sm text-pink-800 mt-8'>
           Already have an Account?
-          <span className='underline cursor-pointer hover:text-pink-950 ml-1'>
+          <span className='underline cursor-pointer hover:text-pink-950 ml-1' onClick={()=>navigate("/login")}>
             Sign In
           </span>
         </p>

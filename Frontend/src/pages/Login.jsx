@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import {FaEyeSlash,FaEye} from "react-icons/fa"
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [showPassword,setShowPassword]=useState(false)
-
+    const navigate=useNavigate()
     const handleLogin=async(e)=>{
         e.preventDefault()
         try{
             const res=await axios.post("http://localhost:3000/api/users/login",{email,password})
             if(res.data.success){
+               localStorage.setItem("user",JSON.stringify(res.data.user))
                 localStorage.setItem("token",res.data.token)
                 alert("Login Successful")
-                console.log(res.data)
+                navigate("/")
             }
         }catch(error){
             console.log(error)
@@ -94,7 +96,7 @@ const Login = () => {
 
         <p className='text-center text-sm text-pink-800 mt-8'>
           Don't have an Account?
-          <span className='underline cursor-pointer hover:text-pink-950 ml-1'>
+          <span className='underline cursor-pointer hover:text-pink-950 ml-1' onClick={()=>navigate("/register")}>
             Sign Up
           </span>
         </p>

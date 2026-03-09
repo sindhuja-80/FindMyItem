@@ -23,6 +23,8 @@ useEffect(() => {
       <h1 className="text-3xl font-bold justify-center text-center mb-8">
         Lost & Found Items
       </h1>
+      <button
+onClick={() => navigate("/matches")} className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Suggested Matches</button>
       <div className="mb-6 flex justify-center">
         <input
           type="text"
