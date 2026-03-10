@@ -31,6 +31,7 @@ const Signup = () => {
     }
     if(password.length<8){
       setError("Password must be atleast 6 characters")
+      return
     }
      if(!emailRegex.test(email)){
     setError("Please enter a valid email address")
@@ -42,7 +43,7 @@ const Signup = () => {
   }
 
     try{
-      const res=await axios.post("https://localhost:5000/api/users/register",{name,email,phone,password})
+      const res=await axios.post("http://localhost:5000/api/users/register",{name,email,phone,password})
       if(res.data.success){
         alert("Account created Successfully")
         navigate("/login")
@@ -54,11 +55,10 @@ const Signup = () => {
   }
 
   return (
-     <div className="h-screen flex items-center justify-center bg-pink-50 px-4">
+     <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4 py-6">
+      <div className="bg-white sm:p-8 md:p-10 p-6 rounded-2xl shadow-lg w-full  max-w-md transition-all">
 
-      <div className="bg-white sm:p-10 p-6 rounded-2xl shadow-lg w-[90%] max-w-md transition-all">
-
-        <h2 className='text-2xl font-bold text-center mb-1 text-pink-800'> FindMyItem</h2>
+        <h2 className='text-2xl sm:text-3xl font-bold text-center mb-1 text-pink-800'> FindMyItem</h2>
 
         <p className='text-md text-center mb-8'>Create an Account</p>
 
@@ -69,7 +69,7 @@ const Signup = () => {
             <input
               type='text'
               placeholder='Enter Name'
-              className='w-full border p-2.5 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
+              className='w-full border p-3 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
               value={name}
               onChange={(e)=>setName(e.target.value)}
             />
@@ -80,7 +80,7 @@ const Signup = () => {
             <input
               type='email'
               placeholder='Enter email'
-              className='w-full border p-2.5 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
+              className='w-full border p-3 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
               value={email}
               onChange={(e)=>setEmail(e.target.value)}
             />
@@ -91,7 +91,7 @@ const Signup = () => {
             <input
               type='number'
               placeholder='Enter Number'
-              className='w-full border p-2.5 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
+              className='w-full border p-3 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
               value={phone}
               onChange={(e)=>setPhone(e.target.value)}
             />
@@ -104,7 +104,7 @@ const Signup = () => {
               <input
                 type={showPassword ? "text" :"password"}
                 placeholder='Enter Password'
-                className='w-full p-2.5 focus:outline-none text-pink-900 placeholder:text-pink-800 rounded-xl bg-pink-200 pl-4'
+                className='w-full p-3 focus:outline-none text-pink-900 placeholder:text-pink-800 rounded-xl bg-pink-200 pl-4'
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
               />
@@ -125,7 +125,7 @@ const Signup = () => {
               <input
                 type={showConfirmPassword ? "text" :"password"}
                 placeholder='Enter Confirm Password'
-                className='w-full p-2.5 focus:outline-none text-pink-900 placeholder:text-pink-800 rounded-xl bg-pink-200 pl-4'
+                className='w-full p-3 focus:outline-none text-pink-900 placeholder:text-pink-800 rounded-xl bg-pink-200 pl-4'
                 value={confirmPassword}
                 onChange={(e)=>setConfirmPassword(e.target.value)}
               />
@@ -145,7 +145,7 @@ const Signup = () => {
 
           <button
             type='submit'
-            className='w-full bg-pink-500 text-white p-2.5 rounded-xl hover:bg-pink-600 active:scale-95 transition duration-200 font-semibold'
+            className='w-full bg-pink-500 text-white p-3 rounded-xl hover:bg-pink-600 active:scale-95 transition duration-200 font-semibold'
           >
             Sign Up
           </button>

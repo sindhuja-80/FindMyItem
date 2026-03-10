@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import { FaMapMarkerAlt, FaTags, FaFolder, FaComments } from "react-icons/fa"
+import BackButton from "../components/BackButton"
 
 const ItemsDetails = () => {
 
@@ -29,7 +30,7 @@ const ItemsDetails = () => {
   return (
 
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
-
+      <BackButton></BackButton>
       <div className="bg-white shadow-xl rounded-xl max-w-4xl w-full grid md:grid-cols-2 gap-6 p-6">
 
         {/* Image */}

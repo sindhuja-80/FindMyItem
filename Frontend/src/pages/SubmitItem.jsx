@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import BackButton from '../components/BackButton'
 const SubmitItem = () => {
     const [image,setImage] = useState(null)
     const [fromData,setFormData] = useState({
@@ -52,7 +53,10 @@ const SubmitItem = () => {
     }
     
   return (
-    <div  className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className='bg-gray-100 pl-3 pt-4'> 
+        <BackButton></BackButton>
+    <div  className="min-h-screen flex items-center justify-center ">
+       
     <div className="w-[360px] bg-white shadow-lg rounded-2xl p-6">
        
             <h2 className="text-center text-xl font-semibold mb-4">Submit Lost/Found Item</h2>
@@ -85,6 +89,7 @@ const SubmitItem = () => {
 
         </form>
       </div>
+    </div>
     </div>
   )
 }

@@ -113,3 +113,12 @@ export const getItemById = async (req, res) => {
 
   }
 };
+
+export const getUserItems=async (req,res)=>{
+  try{
+    const items=await Item.find({user:req.params.userId})
+    res.json(items)
+  }catch(error){
+    res.status(500).json({message:"Error fetching user items"})
+  }
+}

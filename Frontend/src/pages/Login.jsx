@@ -11,7 +11,7 @@ const Login = () => {
     const handleLogin=async(e)=>{
         e.preventDefault()
         try{
-            const res=await axios.post("http://localhost:3000/api/users/login",{email,password})
+            const res=await axios.post("http://localhost:5000/api/users/login",{email,password})
             if(res.data.success){
                localStorage.setItem("user",JSON.stringify(res.data.user))
                 localStorage.setItem("token",res.data.token)
@@ -29,8 +29,8 @@ const Login = () => {
 
       <div className="bg-white sm:p-10 p-6 rounded-2xl shadow-lg w-[90%] max-w-md">
 
-        <h2 className='text-2xl font-bold text-center mb-1'>
-            Welcome to <br/> FindMyItem
+        <h2 className='text-2xl text-pink-800 font-bold text-center mb-1'>
+            FindMyItem
         </h2>
 
         <p className='text-md text-center mb-8'>

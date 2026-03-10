@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import {  FaMapMarkerAlt,FaCalendarAlt,FaFolder,FaTags,FaExclamationCircle,FaCheckCircle} from "react-icons/fa"
+import BackButton from '../components/BackButton'
 const ItemsList = () => {
   const [items, setItems] = useState([])
   const [search,useSearch] = useState("")
@@ -20,11 +21,16 @@ useEffect(() => {
   }, [])
   return (
        <div className="bg-gray-100 min-h-screen p-8">
+        <BackButton></BackButton>
       <h1 className="text-3xl font-bold justify-center text-center mb-8">
         Lost & Found Items
       </h1>
-      <button
-onClick={() => navigate("/matches")} className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Suggested Matches</button>
+     <div className="flex flex-wrap justify-center gap-4 mb-6">
+      <button onClick={() => navigate("/submit-item")} className="bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 transition shadow">  + Add Item</button>
+      <button onClick={() => navigate("/chat")} className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition shadow"> Open Chat</button>
+      <button onClick={() => navigate("/matches")} className="bg-purple-500 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition shadow">  Suggested Matches</button>
+      <button onClick={()=>navigate("/profile")} className="bg-gray-800 text-white px-4 py-2 rounded-lg"> Profile</button>
+</div>
       <div className="mb-6 flex justify-center">
         <input
           type="text"

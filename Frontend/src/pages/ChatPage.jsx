@@ -17,7 +17,6 @@ console.log("Receiver:", userId)
     {
        await axios.post("http://localhost:5000/api/messages/send",{sender:currentUser,receiver:userId,message})
        setMessage("")
-    
     }
   return (
     <div className='p-8'>
