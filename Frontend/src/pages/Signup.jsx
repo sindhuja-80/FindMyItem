@@ -45,8 +45,11 @@ const Signup = () => {
     try{
       const res=await axios.post("http://localhost:5000/api/users/register",{name,email,phone,password})
       if(res.data.success){
-        alert("Account created Successfully")
-        navigate("/login")
+        alert("OTP sent to your email")
+        navigate("/verify-otp",{
+           state:{email}
+        })
+       
       }
     }catch(error){
       console.log(error)
@@ -89,7 +92,7 @@ const Signup = () => {
           <div className="flex flex-col gap-1">
             <label className="text-sm text-pink-900 font-semibold">Phone Number</label>
             <input
-              type='number'
+              type='tel'
               placeholder='Enter Number'
               className='w-full border p-3 border-pink-400 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none placeholder:text-pink-800 text-pink-900 bg-pink-200 pl-4 transition'
               value={phone}

@@ -7,7 +7,10 @@ const userSchema=new mongoose.Schema({
     phone:{type:Number,required:true},
     role:{
         type:String,default:"student"
-    }
+    },
+    isVerified:{type:Boolean,default:false},
+    otp:{type:String},
+    otpExpire:{type:Date}
 },{timestamps:true})
 const User=mongoose.model("User",userSchema)
 export default User

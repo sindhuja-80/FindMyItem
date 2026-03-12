@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import BackButton from '../components/BackButton'
 import { FaUser } from 'react-icons/fa'
 import axios from 'axios'
+import Footer from '../components/Footer'
 const Profile = () => {
     const [user,setUser]=useState(null)
     const [items,setItems]=useState([])
@@ -39,18 +39,17 @@ const Profile = () => {
 }
   return (
     <div className='min-h-screen bg-gray-100 px-4 sm:px-8 py-6'>
-        <BackButton/>
         <div className='bg-white shadow-md rounded-xl p-6 mb-8 max-w-xl mx-auto'>
             <div className='flex flex-col items-center'>
                 <FaUser className='w-24 h-24 rounded-full mb-4'></FaUser>
                 <h2 className='text-2xl font-bold'>{user.name}</h2>
                 <p className='text-gray-600'>{user.email}</p>
                 <p className='text-gray-600'>{user.phone}</p>
-                <button onClick={handleLogout} className='mt-4 bg-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition'>Logout</button>
+                <button onClick={handleLogout} className='mt-4 bg-red text-white px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 transition'>Logout</button>
             </div>
         </div>
         <h2 className='text-xl font-semibold mb-4 text-center'>Your Posted Items</h2>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 mb-10 sm:grid-cols-2 md:grid-cols-3 gap-6'>
              {items.map((item)=>(
                 <div key={item._id} className='bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition'>
                     <div className="flex justify-between mb-3 mt-3">
@@ -66,6 +65,7 @@ const Profile = () => {
                 </div>
         ))}
         </div>
+       <Footer></Footer>
     </div>
   )
 }

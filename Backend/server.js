@@ -7,6 +7,10 @@ import matchRoute from "./routes/matchRoutes.js"
 import messageRouter from "./routes/messageRoutes.js"
 import {Server} from "socket.io"
 import http from "http"
+import dotenv from "dotenv"
+
+dotenv.config()
+
 const app=express()
 
 app.use(express.json())

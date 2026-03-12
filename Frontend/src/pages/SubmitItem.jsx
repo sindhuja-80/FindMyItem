@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import BackButton from '../components/BackButton'
+import Footer from '../components/Footer'
 const SubmitItem = () => {
     const [image,setImage] = useState(null)
     const [fromData,setFormData] = useState({
@@ -56,7 +56,6 @@ const SubmitItem = () => {
     
   return (
     <div className='bg-gray-100 pl-3 pt-4'> 
-        <BackButton></BackButton>
     <div  className="min-h-screen flex items-center justify-center ">
        
     <div className="w-[360px] bg-white shadow-lg rounded-2xl p-6">
@@ -92,6 +91,7 @@ const SubmitItem = () => {
         </form>
       </div>
     </div>
+  <Footer></Footer>
     </div>
   )
 }

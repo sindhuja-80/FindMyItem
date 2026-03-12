@@ -1,4 +1,5 @@
 import Message from "../models/Message.js";
+import User from "../models/User.js";
 
 export const sendMessage=async(req,res)=>{
     try{
@@ -33,4 +34,37 @@ export const getMessage=async(req,res)=>{
  }catch(err){
     res.status(500).json({success:false,error:err.message})
  } 
+}
+
+export const getChatUsers = async (req,res)=>{
+  try{
+
+    const {userId} = req.params
+
+    const messages = await Message.find({
+      $or:[
+        {sender:userId},
+        {receiver:userId}
+      ]
+    })
+
+    const userIds = new Set()
+
+    messages.forEach(msg=>{
+      if(msg.sender.toString() !== userId){
+        userIds.add(msg.sender.toString())
+      }
+      if(msg.receiver.toString() !== userId){
+        userIds.add(msg.receiver.toString())
+      }
+    })
+     const users = await User.find({
+      _id:{ $in:[...userIds] }
+    }).select("name")
+
+    res.json(users)
+
+  }catch(err){
+    res.status(500).json({error:err.message})
+  }
 }

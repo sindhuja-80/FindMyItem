@@ -1,12 +1,9 @@
 import axios from 'axios'
 import React,{useState,useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
-import BackButton from '../components/BackButton'
-
+import Footer from '../components/Footer'
 const SuggestedMatches = () => {
     const [matches,setMatches] = useState([])
     const [search,setSearch] = useState("")
-    const navigate=useNavigate()
     useEffect(()=>{
        fetchMatches()
     },[])
@@ -23,7 +20,7 @@ const SuggestedMatches = () => {
         item.foundItem.itemName.toLowerCase().includes(search.toLowerCase())
     )
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 md:px-10 py-6"><BackButton></BackButton>
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 md:px-10 py-6">
         <h2 className="text-2xl sm:text-3xl font-bold mb-2">Potential Matches</h2>
         <p className="text-gray-600 mb-6 text-sm sm:text-base">Automatically suggest potential matches between lost and found items.</p>
         <div className="mb-6 flex justify-center">
@@ -54,6 +51,7 @@ const SuggestedMatches = () => {
             </div>
         ))}
        </div>
+     <Footer></Footer>
     </div>
   )
 }

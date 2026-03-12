@@ -29,9 +29,11 @@ const ItemsDetails = () => {
   }
 
   return (
+<div className="min-h-screen bg-gray-100 pl-4 pt-4">
+  <BackButton></BackButton>
 
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
-      <BackButton></BackButton>
+    <div className=" flex justify-center items-center p-6">
+      
       <div className="bg-white shadow-xl rounded-xl max-w-4xl w-full grid md:grid-cols-2 gap-6 p-6">
 
         {/* Image */}
@@ -98,6 +100,7 @@ const ItemsDetails = () => {
 
       </div>
 
+    </div>
     </div>
   )
 }

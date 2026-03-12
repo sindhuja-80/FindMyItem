@@ -5,9 +5,7 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://kalagotlasindhuja06_db_user:woKY53Oy973fC4rI@cluster0.zty8v9v.mongodb.net/findmyitem"
-    );
+    await mongoose.connect(process.env.MONGO_URL);
 
     console.log("MongoDB Connected");
   } catch (error) {

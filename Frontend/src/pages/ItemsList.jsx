@@ -2,11 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react'
-import {  FaMapMarkerAlt,FaCalendarAlt,FaFolder,FaTags,FaExclamationCircle,FaCheckCircle} from "react-icons/fa"
-import BackButton from '../components/BackButton'
+import {  FaMapMarkerAlt,FaCalendarAlt,FaFolder,FaTags,FaExclamationCircle,FaCheckCircle,} from "react-icons/fa"
+import Footer from '../components/Footer'
 const ItemsList = () => {
   const [items, setItems] = useState([])
-  const [search,useSearch] = useState("")
+  const [search,setSearch] = useState("")
   const navigate=useNavigate()
     const fetchItems = async () => {
         try {
@@ -20,30 +20,26 @@ useEffect(() => {
     fetchItems()
   }, [])
   return (
-       <div className="bg-gray-100 min-h-screen p-8">
-        <BackButton></BackButton>
+      <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-8 pb-24">
+         
+
       <h1 className="text-3xl font-bold justify-center text-center mb-8">
         Lost & Found Items
       </h1>
-     <div className="flex flex-wrap justify-center gap-4 mb-6">
-      <button onClick={() => navigate("/submit-item")} className="bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 transition shadow">  + Add Item</button>
-      <button onClick={() => navigate("/chat")} className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition shadow"> Open Chat</button>
-      <button onClick={() => navigate("/matches")} className="bg-purple-500 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition shadow">  Suggested Matches</button>
-      <button onClick={()=>navigate("/profile")} className="bg-gray-800 text-white px-4 py-2 rounded-lg"> Profile</button>
-</div>
+       
       <div className="mb-6 flex justify-center">
         <input
           type="text"
           placeholder="Search items..."
           className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={search}
-          onChange={(e) => useSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <button className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={fetchItems}>
           Search
         </button>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" >
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" >
         {
         items.filter((item) => 
           item.itemName.toLowerCase().includes(search.toLowerCase()) ||
@@ -104,6 +100,7 @@ useEffect(() => {
           </div>
         ))}
       </div>
+      <Footer></Footer>
     </div>
   )
 }

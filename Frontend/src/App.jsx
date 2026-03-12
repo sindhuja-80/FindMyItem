@@ -9,20 +9,23 @@ import Login from "./pages/Login.jsx"
 import ProtectedRoute from "./components/ProtectedRute.jsx";
 import SubmitItem from "./pages/SubmitItem.jsx";
 import Profile from "./pages/Profile.jsx";
+import VerifyOTP from "./pages/VerifyOTP.jsx";
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<SignUp></SignUp>}></Route>
+        <Route path="/verify-otp" element={<VerifyOTP></VerifyOTP>}></Route>
         <Route path="/" element={<ProtectedRoute><ItemsList /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}></Route>
         <Route path="/submit-item" element={<ProtectedRoute><SubmitItem></SubmitItem></ProtectedRoute>}></Route>
         <Route path="/items/:id" element={<ProtectedRoute><ItemDetails /></ProtectedRoute>} />
         <Route path="/matches" element={<ProtectedRoute><SuggestedMatches/></ProtectedRoute>}></Route>
-        <Route path="/chat/:userId" element={<ProtectedRoute><ChatPage></ChatPage></ProtectedRoute>}></Route>
-         <Route path="/chat" element={<div>Select a user to chat</div>} />
-      </Routes>
+       <Route path="/chat/:userId" element={<ProtectedRoute><ChatPage></ChatPage></ProtectedRoute>}></Route>
+        <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+        <Route path="/chat/:userId" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+       </Routes>
     </BrowserRouter>
   );
 };
