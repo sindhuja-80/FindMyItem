@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { FaMapMarkerAlt, FaTags, FaFolder, FaComments } from "react-icons/fa"
 import BackButton from "../components/BackButton"
 
 const ItemsDetails = () => {
-
+  const navigate=useNavigate()
   const [item,setItem] = useState(null)
   const { id } = useParams()
 
@@ -13,6 +13,7 @@ const ItemsDetails = () => {
     const fetchItem = async () =>{
       try{
         const res = await axios.get(`http://localhost:5000/api/items/${id}`)
+        console.log("ITEM RESPONSE",res.data)
         setItem(res.data)
       }
       catch(error){
@@ -83,8 +84,11 @@ const ItemsDetails = () => {
           </div>
 
           {/* Chat Button */}
-          <button
-            className="mt-6 flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
+          <button onClick={() => {
+            console.log(item)
+          console.log("Chat receiver:", item.user)
+            navigate(`/chat/${item.user}`)}}
+            className="mt-6 flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition" 
           >
             <FaComments/>
             Chat with Owner

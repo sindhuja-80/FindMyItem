@@ -2,7 +2,7 @@ import Item from "../models/Item.js";
 
 export const addItem = async (req, res) => {
 try {
-    const { itemName, description, date, location, category, tags, type } = req.body;
+    const { itemName, description, date, location, category, tags, type,userId } = req.body;
     const newItem = new Item({
   itemName,
   description,
@@ -11,8 +11,10 @@ try {
   category,
   tags: tags ? tags.split(",") : [],
   type,
-  image: req.file ? req.file.filename : ""
+  image: req.file ? req.file.filename : "",
+  user:userId
 });
+console.log("Body:", req.body)
 const savedItem = await newItem.save();
 res.status(201).json({
   message: "Item added successfully",
@@ -120,5 +122,17 @@ export const getUserItems=async (req,res)=>{
     res.json(items)
   }catch(error){
     res.status(500).json({message:"Error fetching user items"})
+  }
+}
+export const deleteItem=async(req,res)=>{
+  try{
+    const {id}=req.params
+    const item=await Item.findByIdAndDelete(id)
+    if(!item){
+      return res.status(404).json({message:"item not found"})
+    }
+    res.json({message:"item deleted successfully"})
+  }catch(error){
+    res.status(500).json({message:"Error deleting item"})
   }
 }

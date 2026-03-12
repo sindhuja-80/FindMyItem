@@ -18,6 +18,8 @@ const SubmitItem = () => {
         e.preventDefault()
         try {
             const data=new FormData()
+            const user=JSON.parse(localStorage.getItem("user"))
+            data.append("userId",user._id)
             data.append("itemName",fromData.itemName)
             data.append("description",fromData.description)
             data.append("date",fromData.date)

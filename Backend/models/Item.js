@@ -8,6 +8,10 @@ const itemSchema=new mongoose.Schema({
     category:{type:String},
     tags:[{type:String}],
     image:{type:String},
-    type:{type:String,enum:["lost","found"]}
+    type:{type:String,enum:["lost","found"]},
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    }
 },{timestamps:true})
 export default mongoose.model("Item",itemSchema)

@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/items/:id" element={<ProtectedRoute><ItemDetails /></ProtectedRoute>} />
         <Route path="/matches" element={<ProtectedRoute><SuggestedMatches/></ProtectedRoute>}></Route>
         <Route path="/chat/:userId" element={<ProtectedRoute><ChatPage></ChatPage></ProtectedRoute>}></Route>
+         <Route path="/chat" element={<div>Select a user to chat</div>} />
       </Routes>
     </BrowserRouter>
   );

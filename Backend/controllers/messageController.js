@@ -2,6 +2,7 @@ import Message from "../models/Message.js";
 
 export const sendMessage=async(req,res)=>{
     try{
+        console.log(req.body)
         const {sender,receiver,message}=req.body;
          if(!sender || !receiver || !message){
       return res.status(400).json({
@@ -13,7 +14,7 @@ export const sendMessage=async(req,res)=>{
             sender,receiver,message
         })
         await newMessage.save()
-        res.json({success:true,message:newMessage})
+        res.json(newMessage)
     }catch(err){
         console.log(err)
         res.status(500).json({success:false,error:err.message})
@@ -28,7 +29,7 @@ export const getMessage=async(req,res)=>{
             {sender:user2,receiver:user1}
         ]
     }).sort({createdAt:1})
-    res.json({success:true,message:messages})
+    res.json(messages)
  }catch(err){
     res.status(500).json({success:false,error:err.message})
  } 

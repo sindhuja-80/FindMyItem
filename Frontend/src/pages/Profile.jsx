@@ -26,6 +26,17 @@ const Profile = () => {
         window.location.href="/login"
     }
     if(!user) return <p>loading...</p>
+    const handleDelete = async(id)=>{
+  try{
+
+    await axios.delete(`http://localhost:5000/api/items/${id}`)
+
+    setItems(items.filter(item=>item._id !== id))
+
+  }catch(error){
+    console.log(error)
+  }
+}
   return (
     <div className='min-h-screen bg-gray-100 px-4 sm:px-8 py-6'>
         <BackButton/>
@@ -39,10 +50,13 @@ const Profile = () => {
             </div>
         </div>
         <h2 className='text-xl font-semibold mb-4 text-center'>Your Posted Items</h2>
-        <div className='grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
-             {items.map((item)=>{
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+             {items.map((item)=>(
                 <div key={item._id} className='bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition'>
-                    <img src={`http://localhost:500/uploads/${item.image}`} alt={item.itemName} className='w-full h-40 object-cover'></img>
+                    <div className="flex justify-between mb-3 mt-3">
+                    <button onClick={()=>handleDelete(item._id)}className="bg-red-500 text-white px-3 py-1 rounded" >Delete</button>
+                    </div>
+                    <img src={`http://localhost:5000/uploads/${item.image}`} alt={item.itemName} className='w-full h-40 object-cover'></img>
 
                     <div className='p-4'>
                         <h3 className='text-lg font-semibold'>{item.itemName}</h3>
@@ -50,7 +64,7 @@ const Profile = () => {
                         <p className={`mt-2 font-semibold ${item.type==="lost" ? "text-red-500":"text-green-500"}`}>{item.type.toUpperCase()}</p>
                     </div>
                 </div>
-        })}
+        ))}
         </div>
     </div>
   )
