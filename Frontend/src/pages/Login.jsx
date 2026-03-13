@@ -12,6 +12,7 @@ const Login = () => {
         e.preventDefault()
         try{
             const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`,{email,password})
+            console.log("Sending:", { email, password });
             if(res.data.success){
                localStorage.setItem("user",JSON.stringify(res.data.user))
                 localStorage.setItem("token",res.data.token)

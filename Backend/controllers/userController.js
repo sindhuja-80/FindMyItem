@@ -66,8 +66,11 @@ message:"Please verify your email first"
     )
     res.status(201).json({success:true,message:"Logged In",token,user})
  }catch(error){
+  console.log("FULL ERROR:", error);
+  console.log("BACKEND RESPONSE:", error.response?.data);
+  alert(error.response?.data?.message || "Login Failed");
+}
     res.status(500).json({success:false,message:"Login Error"})
- }
 }
 
 export const verifyOTP = async (req, res) => {
