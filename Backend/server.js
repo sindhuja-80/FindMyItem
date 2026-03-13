@@ -33,7 +33,7 @@ const server =http.createServer(app)
 
 const io=new Server(server,{
   cors:{
-    origin:"https://findmyitem-frontend.vercel.app/",
+    origin:"https://findmyitem-frontend2.vercel.app/",
     credentials:true,
     methods:["GET","POST"]
   }
