@@ -14,7 +14,7 @@ const Profile = () => {
     },[])
     const fetchUserItems=async(userId)=>{
         try{
-            const res=await axios.get(`http://localhost:5000/api/items/user/${userId}`)
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/items/user/${userId}`)
             setItems(res.data)
         }catch(err){
             console.log(err)

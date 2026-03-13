@@ -11,7 +11,7 @@ const SuggestedMatches = () => {
     },[])
     const fetchMatches = async () =>{
         try{
-             const res= await axios.get("http://localhost:5000/api/matches")
+             const res= await axios.get(`${import.meta.env.VITE_API_URL}/api/matches`)
              setMatches(res.data.matches)
         }catch(err){
             console.error("Error fetching matches",err)

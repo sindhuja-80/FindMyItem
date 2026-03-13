@@ -29,7 +29,7 @@ const SubmitItem = () => {
             data.append("type",fromData.type)
             data.append("image",image)
             
-            await axios.post("http://localhost:5000/api/items/add",data,{
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/items/add`,data,{
                 headers:{
                     "Content-Type":"multipart/form-data"    
                 }

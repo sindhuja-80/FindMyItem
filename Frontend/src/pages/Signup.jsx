@@ -43,7 +43,7 @@ const Signup = () => {
   }
 
     try{
-      const res=await axios.post("http://localhost:5000/api/users/register",{name,email,phone,password})
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`,{name,email,phone,password})
       if(res.data.success){
         alert("OTP sent to your email")
         navigate("/verify-otp",{

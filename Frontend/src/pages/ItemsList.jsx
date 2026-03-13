@@ -10,7 +10,7 @@ const ItemsList = () => {
   const navigate=useNavigate()
     const fetchItems = async () => {
         try {
-            const res=await axios.get("http://localhost:5000/api/items")
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/items`)
             setItems(res.data)
         } catch (error) {
             console.error("Error fetching items",error)

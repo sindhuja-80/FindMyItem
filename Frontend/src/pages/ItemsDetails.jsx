@@ -12,7 +12,7 @@ const ItemsDetails = () => {
   useEffect(()=>{
     const fetchItem = async () =>{
       try{
-        const res = await axios.get(`http://localhost:5000/api/items/${id}`)
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/items/${id}`)
         console.log("ITEM RESPONSE",res.data)
         setItem(res.data)
       }

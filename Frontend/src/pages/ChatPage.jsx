@@ -18,7 +18,7 @@ const ChatPage = () => {
   const fetchChatUsers = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/messages/chats/${currentUser}`
+        `${import.meta.env.VITE_API_URL}/api/messages/chats/${currentUser}`
       )
       setChatUsers(res.data)
     } catch (err) {
