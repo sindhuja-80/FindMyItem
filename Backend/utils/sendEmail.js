@@ -1,23 +1,31 @@
 import nodemailer from "nodemailer"
 
-const sendEmail = async(email,otp)=>{
-
 const transporter = nodemailer.createTransport({
-service:"gmail",
-auth:{
-user:process.env.EMAIL,
-pass:process.env.EMAIL_PASS
-}
+  host:"smtp.gmail.com",
+  port:587,
+  secure:false,
+  auth:{
+    user:process.env.EMAIL,
+    pass:process.env.EMAIL_PASS
+  }
 })
 
-const mailOptions = {
-from:process.env.EMAIL,
-to:email,
-subject:"Email Verification OTP",
-text:`Your OTP for verification is ${otp}`
-}
+const sendEmail = async(email,otp)=>{
 
-await transporter.sendMail(mailOptions)
+  try{
+
+    const info = await transporter.sendMail({
+      from:`"FindMyItem" <${process.env.EMAIL}>`,
+      to:email,
+      subject:"Email Verification OTP",
+      text:`Your OTP is ${otp}`
+    })
+
+    console.log("Email sent:", info.response)
+
+  }catch(error){
+    console.log("EMAIL ERROR:", error)
+  }
 
 }
 

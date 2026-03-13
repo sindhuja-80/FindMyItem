@@ -15,19 +15,11 @@ export const registerUser= async(req,res)=>{
         message:"User already exists. Please login"
       })
     }
-              const otp = otpGenerator.generate(6,{
-upperCaseAlphabets:false,
-lowerCaseAlphabets:false,
-specialChars:false
-})
+              const otp = Math.floor(100000 + Math.random() * 900000).toString()
         if(existingUser && !existingUser.isVerified){
           existingUser.otp = otp
   existingUser.otpExpire = Date.now() + 5*60*1000
   await existingUser.save()
-  return res.json({
-    success:true,
-    message:"OTP resent to email"
-  })
         }
         const hashedPassword =await bcrypt.hash(password,8)
     
@@ -40,12 +32,10 @@ specialChars:false
             otpExpire:Date.now()+5*60*1000
         })
         const savedUser=await user.save()
-        await sendEmail(email,otp)
+        await sendEmail(email,otp).catch(err=>console.log("Email error:",err))
         console.log("OTP:", otp);
           console.log("Sending OTP to:", email);
         res.status(201).json({success:true,message:"OTP is sent to email.please verify",savedUser})
-
-    
     }catch(error){
         console.log("register user",error)
         res.status(500).json({success:false,message:error.message})
@@ -90,13 +80,22 @@ export const verifyOTP = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-if(String(user.otp).trim() !== String(otp).trim()){
-  return res.status(400).json({message:"Invalid OTP"})
-}
+    if (!user.otp) {
+      return res.status(400).json({ message: "OTP not found. Please register again." });
+    }
 
-if(new Date(user.otpExpire).getTime() < Date.now()){
-  return res.status(400).json({message:"OTP expired"})
-}
+    console.log("Stored OTP:", user.otp);
+    console.log("Entered OTP:", otp);
+
+    // Check OTP match
+    if (user.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    // Check OTP expiry
+    if (user.otpExpire < Date.now()) {
+      return res.status(400).json({ message: "OTP expired" });
+    }
 
     user.isVerified = true;
     user.otp = null;
@@ -110,7 +109,7 @@ if(new Date(user.otpExpire).getTime() < Date.now()){
     });
 
   } catch (error) {
-    console.log(error);
+    console.log("Verify OTP error:", error);
     res.status(500).json({ message: "OTP verification failed" });
   }
 };
