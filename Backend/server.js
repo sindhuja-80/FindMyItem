@@ -47,6 +47,7 @@ io.on("connection",(socket)=>{
     console.log("User disconnected")
   })
 })
-server.listen(cors, () => {
+const PORT=process.env.PORT || 5000
+server.listen(PORT, () => {
   console.log("Server running in correct link");
 });
