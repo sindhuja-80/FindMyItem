@@ -9,6 +9,12 @@ export const registerUser= async(req,res)=>{
     try{
         const {name,email,password,phone}=req.body
           const existingUser=await User.findOne({email})
+             if(existingUser && existingUser.isVerified){
+      return res.status(400).json({
+        success:false,
+        message:"User already exists. Please login"
+      })
+    }
               const otp = otpGenerator.generate(6,{
 upperCaseAlphabets:false,
 lowerCaseAlphabets:false,
@@ -18,15 +24,12 @@ specialChars:false
           existingUser.otp = otp
   existingUser.otpExpire = Date.now() + 5*60*1000
   await existingUser.save()
-
-  await sendEmail(email,otp)
-
   return res.json({
     success:true,
     message:"OTP resent to email"
   })
         }
-        const hashedPassword =await bcrypt.hash(password,10)
+        const hashedPassword =await bcrypt.hash(password,8)
     
         const user = new User({
             name,
