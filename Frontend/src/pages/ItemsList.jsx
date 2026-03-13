@@ -53,7 +53,7 @@ useEffect(() => {
             className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
           >
             <img
-              src={`http://localhost:5000/uploads/${item.image}`}
+              src={item.image}
               alt={item.itemName}
               className="w-full h-52 object-contain"
             />

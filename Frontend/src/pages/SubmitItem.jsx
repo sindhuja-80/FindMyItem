@@ -27,10 +27,8 @@ const SubmitItem = () => {
             data.append("category",fromData.category)
             data.append("tags",fromData.tags)
             data.append("type",fromData.type)
-
-            if(image){
-                data.append("image",image)
-            }
+            data.append("image",image)
+            
             await axios.post("http://localhost:5000/api/items/add",data,{
                 headers:{
                     "Content-Type":"multipart/form-data"    

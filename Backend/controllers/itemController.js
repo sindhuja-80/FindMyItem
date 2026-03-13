@@ -1,6 +1,7 @@
 import Item from "../models/Item.js";
 
 export const addItem = async (req, res) => {
+
 try {
     const { itemName, description, date, location, category, tags, type,userId } = req.body;
     const newItem = new Item({
@@ -11,10 +12,9 @@ try {
   category,
   tags: tags ? tags.split(",") : [],
   type,
-  image: req.file ? req.file.filename : "",
+  image: req.file ? req.file.path : "",
   user:userId
 });
-console.log("Body:", req.body)
 const savedItem = await newItem.save();
 res.status(201).json({
   message: "Item added successfully",

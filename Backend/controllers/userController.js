@@ -86,10 +86,6 @@ export const verifyOTP = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
- console.log("DB OTP:", user.otp);
-    console.log("Entered OTP:", otp);
-    console.log("Expire:", user.otpExpire);
-    console.log("Now:", Date.now());
 
 if(String(user.otp).trim() !== String(otp).trim()){
   return res.status(400).json({message:"Invalid OTP"})

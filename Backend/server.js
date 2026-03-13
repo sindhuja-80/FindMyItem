@@ -1,3 +1,6 @@
+import dotenv from "dotenv"
+dotenv.config()
+
 import express from "express"
 import cors from "cors"
 import connectDB from "./config/db.js"
@@ -7,9 +10,7 @@ import matchRoute from "./routes/matchRoutes.js"
 import messageRouter from "./routes/messageRoutes.js"
 import {Server} from "socket.io"
 import http from "http"
-import dotenv from "dotenv"
 
-dotenv.config()
 
 const app=express()
 
@@ -32,7 +33,8 @@ const server =http.createServer(app)
 
 const io=new Server(server,{
   cors:{
-    origin:"http://localhost:5173",
+    origin:"https://findmyitem-frontend-vercel.app",
+    credentials:true,
     methods:["GET","POST"]
   }
 })
@@ -45,6 +47,6 @@ io.on("connection",(socket)=>{
     console.log("User disconnected")
   })
 })
-server.listen(5000, () => {
-  console.log("Server running on port 5000");
+server.listen(cors, () => {
+  console.log("Server running in correct link");
 });

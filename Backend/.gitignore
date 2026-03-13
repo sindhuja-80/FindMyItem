@@ -1,0 +1,62 @@
+## .gitignore (Backend)
+
+The backend uses a `.gitignore` file to prevent unnecessary or sensitive files from being pushed to GitHub.
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+temp/
+
+# Uploaded files
+uploads/
+
+# Build files
+dist/
+build/
+
+
+**Note:**
+Sensitive data such as **MongoDB URI, Cloudinary keys, JWT secrets, and email credentials** are stored in the `.e
+

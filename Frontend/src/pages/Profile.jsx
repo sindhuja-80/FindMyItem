@@ -55,7 +55,7 @@ const Profile = () => {
                     <div className="flex justify-between mb-3 mt-3">
                     <button onClick={()=>handleDelete(item._id)}className="bg-red-500 text-white px-3 py-1 rounded" >Delete</button>
                     </div>
-                    <img src={`http://localhost:5000/uploads/${item.image}`} alt={item.itemName} className='w-full h-40 object-cover'></img>
+                    <img src={item.image} alt={item.itemName} className='w-full h-40 object-cover'></img>
 
                     <div className='p-4'>
                         <h3 className='text-lg font-semibold'>{item.itemName}</h3>

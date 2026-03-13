@@ -39,9 +39,9 @@ const ItemsDetails = () => {
         {/* Image */}
         <div className="flex justify-center items-center">
           <img
-            src={`http://localhost:5000/uploads/${item.image}`}
+            src={item.image}
             alt={item.itemName}
-            className="rounded-lg object-contain h-80"
+            className="rounded-lg object-contain h-80 "
           />
         </div>
 

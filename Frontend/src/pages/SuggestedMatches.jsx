@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React,{useState,useEffect} from 'react'
 import Footer from '../components/Footer'
+import { useNavigate } from 'react-router-dom'
 const SuggestedMatches = () => {
     const [matches,setMatches] = useState([])
     const [search,setSearch] = useState("")
+    const navigate=useNavigate()
     useEffect(()=>{
        fetchMatches()
     },[])
@@ -36,7 +38,7 @@ const SuggestedMatches = () => {
        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
          {filteredMatches.map((match, index) => (
             <div key={index} className="bg-white rounded-xl shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between p-4 hover:shadow-lg transition">
-                   <img src={`http://localhost:5000/uploads/${match.foundItem.image}`} alt="item" className="w-50 h-50 object-cover rounded-lg"/>
+                   <img src={match.foundItem.image} alt="item" className="w-40 h-40 object-cover rounded-lg"/>
                    <div className='flex flex-col justify-between flex-1'>
                <div className="space-y-2">
                    <span className="text-sm w-fit text-center bg-green-100 text-green-700 px-3 py-1 rounded-full">Possible Match</span>
